@@ -77,6 +77,8 @@ def build_choices(items, key="name"):
     return [(str(i), item[key]) for i, item in enumerate(items)]
 
 def select_menu(dialog_instance, title, items):
+    # Sort items by name for better user experience
+    items.sort(key=lambda x: x["name"])
     choices = build_choices(items)
     button, choice = dialog_instance.menu(title, choices=choices)
     if button != "ok":
